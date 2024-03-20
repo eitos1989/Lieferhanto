@@ -1,0 +1,60 @@
+#groupLine {
+    display: flex;
+    white-space: nowrap;
+    overflow-x: hidden;
+}
+
+.group {
+    padding: var(--groupItemPadding);
+    cursor: pointer;
+    font-size: 14pt;
+    margin-right: var(--marginLeft);
+    text-align: center;
+    align-items: center;
+    border-radius: 50px;
+    font-size: 12pt;
+    font-weight: 600;
+}
+
+.group>a{
+    text-decoration: none;
+}
+
+.group>a:visited, .group>a:hover, .group>a:focus, .group>a:active{
+    text-decoration: none;
+    color: inherit;
+} 
+
+.activeGroup, .group:hover {
+    background-color: black;
+    color: white;
+}
+
+#groupNav {
+    width: 90%;
+    height: 32px;
+    display: flex;
+}
+
+#searchBar{
+    max-height: 32px;
+    width: 100%;
+}
+
+#search {
+    height: 8px;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    border: 2px solid grey;
+}
+
+#gastroGroupBar {
+    height: 42px;
+    display: flex;
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    max-width: 960px;
+    margin: auto;
+}

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- import Javascript -->
+    <script src="./scripts/scripts.js"></script>
+    <script src="./scripts/variables.js"></script>
+    <script src="./scripts/article.js"></script>
+    <script src="./scripts/groups.js"></script>
+    <script src="./scripts/ratings.js"></script>
+    <script src="./scripts/variantes.js"></script>
+    
+    <!-- import Style Dateien -->
+    <link rel="stylesheet" href="./style.css">  
+    <title>Lieferhanto</title>
+</head>
+<body onload="render()">
+    <div id="dialog" class="dialog-bg d-none">
+        <div class="dialog" onclick="stopClosing(event)">
+            <div class="headline">
+                <div>
+                    <h2 id="modalHeadline">Über dieses Geschäft</h2>
+                </div>
+                <div onclick="closeDialog()" class="exit">
+                    <div class="roundedImgSmall">
+                        <img src="./img/icons/x-mark-24.png">
+                    </div>
+                </div>
+            </div>
+            <div id="orderSucess">
+                <div>Vielen Dank für deine Bestellung in Höhe von <span id="basketTotalFinish">1,99 €</span> !</div>
+            </div>
+            <div id="ingridiensChoises">
+                <div class="ingridiensChoisesHead">
+                    <div class="dflexcol">
+                        <div id="articleDesc">würzige Knoblauch-Käse-Ecken aus frischem Pizzateig direkt aus dem Ofen & mit Gouda überbacken</div>
+                        <div id="articlePrice" class="secondHeadline">6,90 €</div>
+                    </div>
+                    <div>
+                        <img class="articleImg" id="articleImg" src="./img/pizza-group.jpg" />
+                    </div>
+                </div>
+                <div id="ingridiensListWrapper">
+                    <div class="ingridiensList" id="ingridiensList"></div>
+                </div>
+                <div class="ingridiensChoisesFooter">
+                    <div class="dflexevenly">
+                        <div class="roundedImg" id="modalArtMinus"> - </div>
+                        <div id="tempArtCnt">1</div>
+                        <div class="roundedImg marginSide" id="modalArtPlus"> + </div>
+                    </div>
+                    <div id="articleToBasketPrice" class="priceBtn">
+                        6,90  
+                    </div>
+                </div>
+            </div>
+            <div class="dialogNav" id="dialogNav">
+                <div class="dialogNavElement tabActiv" id="tabReview" onclick="openTab(event, 'rating')">
+                    Bewertungen
+                </div>
+                <div class="dialogNavElement" id="tabInfo" onclick="openTab(event, 'info')">
+                    Info
+                </div>
+                <div class="dialogNavElement" id="tabOffer" onclick="openTab(event, 'offer')">
+                    Angebote
+                </div>
+            </div>
+            <div class="modalContent" id="modalContent">
+                <div id="allergenAndSubstanceInfo" class="d-none">
+                    <div id="substanceList" class="d-none">
+                        <div class="secondHeadline">Substanzen oder Produkte, die Allergien oder Intoleranzen hervorrufen können.</div>
+                        <div id="substanceListUL">
+
+                        </div>
+                    </div>
+                    <div id="allergensList" class="d-none">
+                        <div class="secondHeadline">Allergene</div>
+                        <div id="allergensListUL">
+
+                        </div>
+                    </div>
+                    <div class="offerLimits">
+                        Wir stellen dir stets relevante Informationen zur Verfügung, die wir von unseren Partnern über deren Produkte erhalten. In einigen Fällen können die angezeigten Informationen jedoch unvollständig, automatisch generiert und/oder noch nicht von WORLD OF PIZZA validiert worden sein. Bitte wende dich an unseren Kundenservice, wenn du Allergien, Unverträglichkeiten oder Fragen zu bestimmten Artikeln hast.
+                    </div>
+                </div>
+                <div id="rating">
+                    <div class="ratingInfo">
+                        <div class="ratingInfoContent">
+                            <h2>Allgemeine Bewertungen</h2>
+                            <div class="ratingFlex">
+                                <div id="ratingResult">4,4</div>
+                                <div class="ratingInformation">
+                                    <div>
+                                        <div id="Modalstars">
+                                            <div class="star"><img src="./img/star-128.png" id="star1"/></div>
+                                            <div class="star"><img src="./img/star-128.png" id="star2"/></div>
+                                            <div class="star"><img src="./img/star-128.png" id="star3"/></div>
+                                            <div class="star"><img src="./img/star-128.png" id="star4"/></div>
+                                            <div class="star"><img src="./img/star-128.png" id="star5"/></div>
+                                        </div>
+                                        <div>von <span id="ratingCnt">318</span> Bewertungen</div>
+                                    </div>
+                                    <div>Alle Bewertungen stammen von Lieferhanto Kunden, die bei "Bring Mir 'A' Pizza Berlin bestellt haben.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reviewListWrapper">
+                        <div id="reviewListDiv">
+
+                        </div>
+                    </div>
+                </div> 
+                <div id="info" class="d-none">
+                    <div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2424.571366430338!2d13.311883377238214!3d52.57736233198033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a853fe7624be8b%3A0x907320f67d74ff8e!2sAntonienstra%C3%9Fe%2034%2C%2013403%20Berlin!5e0!3m2!1sde!2sde!4v1700477043855!5m2!1sde!2sde" width="600" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="infoMainDiv">
+                        <div class="infoWrapper">
+                            <div class="infoHeadline">
+                                <div class="infoHeadImg">
+                                    <img src="./img/clock-3-24.png" />
+                                </div>
+                                <div>
+                                    <h3>Lieferzeiten</h3>
+                                </div>
+                            </div>
+                            <div class="infomationDiv">
+                                <div class="infoFlexSpaceBet">
+                                    <div>Montag</div>
+                                    <div>11:00 - 00:00</div>
+                                </div>
+                                <div class="infoFlexSpaceBet">
+                                    <div>Dienstag</div>
+                                    <div>11:00 - 00:00</div>
+                                </div>
+                                <div class="infoFlexSpaceBet">
+                                    <div>Mittwoch</div>
+                                    <div>11:00 - 00:00</div>
+                                </div>
+                                <div class="infoFlexSpaceBet">
+                                    <div>Donnerstag</div>
+                                    <div>11:00 - 00:00</div>
+                                </div>    
+                                <div class="infoFlexSpaceBet">
+                                    <div>Freitag</div>
+                                    <div>11:00 - 00:00</div>
+                                </div>
+                                <div class="infoFlexSpaceBet">
+                                    <div>Samstag</div>
+                                    <div>11:00 - 00:00</div>
+                                </div>
+                                <div class="infoFlexSpaceBet">
+                                    <div>Sonntag</div>
+                                    <div>11:00 - 00:00</div>
+                                </div>                               
+                            </div>
+                        </div>
+                        <div class="infoWrapper">
+                            <div class="infoHeadline">
+                                <div class="infoHeadImg">
+                                    <img src="./img/clock-3-24.png" />
+                                </div>
+                                <div>
+                                    <h3>Gebühren</h3>
+                                </div>
+                            </div>
+                            <div class="infomationDiv">
+                                <div class="infoFlexSpaceBet">
+                                    <div>Mindestbestellwert</div>
+                                    <div>10.00 €</div>
+                                </div> 
+                                <div class="infoFlexSpaceBet">
+                                    <div>Lieferkosten</div>
+                                    <div>gratis</div>
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="infoWrapper">
+                            <div class="infoHeadline">
+                                <div class="infoHeadImg">
+                                    <img src="./img/clock-3-24.png" />
+                                </div>
+                                <div>
+                                    <h3>Bezahlmethoden</h3>
+                                </div>
+                            </div>
+                            <div class="infomationDiv">
+                               <div class="paymentDiv">
+                                    <div class="payment">
+                                        Bar
+                                    </div>
+                                    <div class="payment">
+                                        Paypal
+                                    </div>
+                                    <div class="payment">
+                                        Klarna
+                                    </div>
+                                    <div class="payment">
+                                        Kreditkarte
+                                    </div>
+                                    <div class="payment">
+                                        Gutschein
+                                    </div>
+                                    <div class="payment">
+                                        Bitcoin
+                                    </div>
+                               </div>
+                            </div>
+                        </div>
+                        <div class="infoWrapper">
+                            <div class="infoHeadline">
+                                <div class="infoHeadImg">
+                                    <img src="./img/clock-3-24.png" />
+                                </div>
+                                <div>
+                                    <h3>Impressum</h3>
+                                </div>
+                            </div>
+                            <div class="infomationDiv">
+                                John Doe handelt im Namen von Bring me 'A' Pizza Berlin<br />
+                                Musterstraße 23<br />
+                                12345 Buxtehude<br /><br />
+                                
+                                Fax: 0000 0000 000 <br />
+                                MwSt-Nummer: DE000 000 000<br />
+                                
+                                Plattform der EU-Kommission zur Online-Streitbeilegung: https://ec.europa.eu/consumers/odr
+                                <hr>
+                                Wir sind ein professioneller Anbieter. Erfahre mehr darüber, wie wir gemeinsam mit Lieferhanto.de die Verbraucherverantwortung übernehmen.
+                            </div>
+                        </div>
+                    </div>    
+                </div>
+                <div id="offer" class="d-none">
+                    <div id="offerDiv">
+                        <div>
+                            <h3>Nur Abholung</h3>
+                            <div class="offer">
+                                <h4>20% Abholrabatt</h4>
+                                <p>Bei Abholung erhalten Sie 20% Rabatt! (ausgenommen Burger Menüs, Kids Menüs)</p>
+                                <span class="offerLimits" >Nur Abholung</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h3>Nur Lieferung</h3>
+                            <div class="offer">
+                                <h4>10% Crazyfriday</h4>
+                                <p>Bei Lieferungen am Freitag erhalten Sie 10% Rabatt! (ausgenommen Burger Menüs, Kids Menüs)</p>
+                                <span class="offerLimits">Nur Liefernung</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page">
+        <header>
+            <div class="headerIMG">
+                <img src="./img/LH-logo.png">
+            </div>
+            <div class="headerTitle">
+                <h2>Speisekarte</h2>
+            </div>
+            
+            <div class="headerNavMenu">
+                <div id="lanuage"></div>
+                <div class="navMenuEllipse">
+                    <img src="">
+                </div>
+            </div>
+            
+        </header>
+        <div class="main">
+            <div class="left">
+                <div class="gastroheader">
+                    <div id="gastroImg">
+                        <img src="./img/Restaurant-header.jpg">
+                    </div>
+                </div>
+                <div class="maxWidth">
+                    <div class="gastroLogo">
+                        <img src="./img/LH-logo.png">
+                    </div>
+                    <div id="gastroNameContainer">
+                        <div>
+                            <h1>Bring Mir 'A' Pizza Berlin <br> Berliner Straße</h1>
+                        </div>
+                        <div class="iconBar">
+                            <div class="roundedImg" onclick="openDialog(event, 'info')">
+                                <img src="./img/icons/info-24.png">
+                            </div>
+                            <div class="roundedImg" onclick="changeHeart()">
+                                <img src="./img/icons/regular/heart.svg" id="loveFood">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="gastroRatingDiv" onclick="openDialog(event, 'rating')">
+                        <div id="stars">
+                            <div class="star"><img src="./img/star-128.png" id="star1"/></div>
+                            <div class="star"><img src="./img/star-128.png" id="star2"/></div>
+                            <div class="star"><img src="./img/star-128.png" id="star3"/></div>
+                            <div class="star"><img src="./img/star-128.png" id="star4"/></div>
+                            <div class="star"><img src="./img/star-128.png" id="star5"/></div>
+                        </div>
+                        <div id="ratingStr"><span id ="rating-cnt">0</span> Bewertungen</div>
+                    </div>
+                    
+                    <div class="gastroInformationDiv">
+                        <div class="gastroInformation">
+                            <div class="GIicon"><img src="./img/clock-3-24.png"/></div>
+                            <div class="deliverytime">15 - 40min</div>
+                        </div>
+                        <div class="gastroInformation">
+                            <div class="GIicon"><img src="./img/bike-24.png"/></div>
+                            <div class="deliveryCost">Kostenlos</div>
+                        </div>
+                        <div class="gastroInformation">
+                            <div class="GIicon"><img src="./img/cart-29-24.png"/></div>
+                            <div class="minDeliveryCost">Min. 10,00 €</div>
+                        </div>
+                    </div>
+                    <div id="offers">
+                        <h2>Angebote</h2>
+                        <div id="offerList">
+                            <div class="offer" onclick="openDialog(event, 'offer')">
+                                <h4>20% Abholrabatt</h4>
+                                <p>Bei Abholung erhalten Sie 20% Rabatt! (ausgenommen Burger Menüs, Kids Menüs)</p>
+                                <span class="offerLimits" >Nur Abholung</span>
+                            </div>
+                            <div class="offer" onclick="openDialog(event, 'offer')">
+                                <h4>10% Crazyfriday</h4>
+                                <p>Bei Lieferungen am Freitag erhalten Sie 10% Rabatt! (ausgenommen Burger Menüs, Kids Menüs)</p>
+                                <span class="offerLimits">Nur Liefernung</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="gastroGroupBar" class="maxWidth">    
+                    <div class="roundedImgSmall" id="searchIcon" onclick="changeNavigation()">
+                        <img src="./img/icons/search-12-16.png">
+                    </div>
+                    <div id="groupNav">
+                    </div>  
+                </div>
+
+                <div class="articleListWrapper" id="articleListWrap">
+                    
+                </div>
+            </div>
+            <div class="basket">
+                <h2>Warenkorb</h2>
+                <div class="basketToggle">
+                    <div id="deliveryToggle" class="basketToggleEle elactiv" onClick="setactive('deliveryToggle')">
+                        <img src="./img/bicycle-24.png" />
+                        <div>Lieferung</div>
+                    </div>
+                    <div id="pickupToggle" class="basketToggleEle" onClick="setactive('pickupToggle')">
+                        <img src="./img/cart-29-24.png" />
+                        <div>Abholung</div>
+                    </div>
+                </div>
+                <div id="basketContent">
+                    <img src="./img/bunch-ingredients-48.png" />
+                    <div id="basketInput">
+                        <h3>Fülle deine Warenkorb</h3>
+                        <p>Füge einige leckere Gerichte aus der Speisekarte hinzu unf bestelle dein Essen</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="linkFooterLine">
+            <div class="Footerlink" onclick="openDialog(event, 'info')">Informationen</div>
+            <div class="Footerlink" onclick="openDialog(event, 'rating')">Bewertungen</div>
+            <div class="Footerlink" onclick="openDialog(event, 'offer')">Angebote</div>
+        </div>
+        <div>&copy; 2024 Erik Thomsen</div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,122 @@
+/*
+Article List Wrapper CSS Anfang 
+*/
+
+.articleListWrapper {
+    background-color: #fcfcfc;
+    padding: 0 var(--modalPadding-s);
+    max-width: 960px;
+   
+    margin: 0 auto;
+}
+
+.articleHeadLine {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16pt;
+    font-weight: 800;
+    line-height: 32px;
+    margin-bottom: 8px;
+}
+
+.articleHeadLine h3{
+    margin: 0px;
+    margin-right: 10px;
+   
+}
+
+.articleHeadLineLeft {
+    display: flex;
+    justify-content: center;
+}
+
+.addArticle {
+    font-size: 20pt;
+    background-color: #f5f3f1;
+    height: 32px !important;
+    width: 32px !important;
+
+}
+
+.article {
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #dbd9d7;
+    padding: var(--modalPadding-s) var(--modalPadding-s); 
+    min-height: 64px;
+    border-radius: 12px;
+    margin-top: var(--modalPadding-s);
+
+}
+
+.article:hover {
+    background-color: #f5f3f1;
+}
+
+.articlePrice {
+    font-size: 18pt;
+    font-weight: 800;
+    line-height: 28px;
+    margin-top: auto;
+    height: max-content;
+}
+
+.articleInnerDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.articleImg {
+    height: 120px;
+    width: 120px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.articleDesc {
+    font-size: 12pt;
+    line-height: 24px;
+}
+
+.articleVariant {
+    font-size: 10pt;
+    line-height: 24px;
+    color: #303d3f;
+}
+
+.articleDescDiv {
+    display: flex;
+    justify-content: space-between;
+}
+
+.articleDescInnerDiv {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+}
+
+.articleGroup h2 {
+    margin-bottom: 0px;
+}
+
+.articleGroup {
+    margin-top: 32px;
+}
+
+.articleGroupIMG {
+    height: 150px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.selection {
+    margin-top: 8px;
+}
+
+/*
+Article List Wrapper CSS Ende 
+*/

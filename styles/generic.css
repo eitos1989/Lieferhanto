@@ -1,0 +1,57 @@
+:root {
+    --marginSide: 16px; 
+    --avatarSize: 82px;
+    --logoBigSize: 72px;
+    --iconBtnSize: 48px;
+    --iconBtnImage: 24px; 
+    --iconPadding: 16px;
+    --iconBtnSizeSmall: 32px;
+    --iconBtnImageSmall: 16px;
+    --marginTop:8px;
+    --marginLeft: 8px;
+    --marginIconRight:4px;
+    --fontSizeSmall: 10pt;
+    --groupItemPadding: 5px 12px;
+    --maxWidthMain: 960px;
+    --modalPadding-m: 24px;
+    --modalPadding-s: 16px;
+    --modalPadding-xs: 8px;
+    --hover-byNav-Element: hsla(0,0%,100%,.08);
+    --hover-backgroundColor: #f5f5f5;
+    --btnColorPrice: #f36805;
+    --color-border: #797876;
+}
+
+a {
+    color: #000;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.maxWidth {
+    width: 100%;
+    max-width: var(--maxWidthMain);
+    margin: auto;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
