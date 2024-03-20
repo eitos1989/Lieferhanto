@@ -34,17 +34,7 @@ function openDialog(event, dialogType, articleID=0) {
     document.getElementById("dialog").classList.remove("d-none");
 }
 
-function stopClosing(event){
-    event.stopPropagation();
-}
 
-function closeDialog() {
-    document.getElementById("dialog").classList.add("d-none");  
-}
-
-function getPriceStr(price) {
-    return price.toFixed(2).toString().replace('.', ",") + " €";
-}
 
 function renderIngridensModal(article) {
     let priceStr = getPriceStr(article['price']);
@@ -66,24 +56,9 @@ function renderIngridensModal(article) {
     document.getElementById('articleToBasketPrice').innerHTML = priceStr;
 }
 
-function calcRatingCnt(){
-    let ratingCnt = ratings.length;
-    document.getElementById('rating-cnt').innerHTML = ratingCnt;
-    document.getElementById('ratingCnt').innerHTML = ratingCnt;
-}
 
-// Replaces oldS with newS in the string fullS
-function replaceString(oldS, newS, fullS) {
-    for (let i = 0; i < fullS.length; ++i) {
-      if (fullS.substring(i, i + oldS.length) === oldS) {
-        fullS =
-          fullS.substring(0, i) +
-          newS +
-          fullS.substring(i + oldS.length, fullS.length);
-      }
-    }
-    return fullS;
-}
+
+
 
 function getVariantbyID(variantID){
     for (let index = 0; index < variantes.length; index++) {
@@ -148,80 +123,6 @@ function getParentChoises(element){
     return parentChoises;
 }
 
-/** 
-function renderSelectVariantHTML(choisesArr, name) {
-    let ret = `
-        <div class="ingridiensListChoise">
-            <div class="ingridiensListHeadline">
-                ${name}
-            </div>
-            <div class="ingridiensChoises">
-                <select name="${name}" id="${name}Select" class="choiseSelect" onchange="showSelection('${name}Selection', '${name}Select')">
-                    <option value="0">--Bitte wählen Sie ${name}--</option>`;
-
-    for (let i = 0; i < choisesArr.length; i++) {
-        const element = choisesArr[i];
-        ret += `<option value="${element['price']}">${element['choise']} ( + ${element['price']} € )</option>`;
-    }
-    
-    ret += `</select>
-                <div id="${name}Selection" class="d-none selection">
-                    <div class="disFlex">
-                        <div id="${name}SelectionName" class="selectionName">Name</div>
-                        <div class="smallIcon" onclick="openDialog(event, 'allergens', 1)">
-                            <img src="./img/icons/info-24.png">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-
-    return ret;
-}
-*/
-
-function renderSelectVariantHTML(choisesArr, name) {
-    const selectOptionsHTML = generateSelectOptionsHTML(choisesArr);
-    const selectionDivHTML = generateSelectionDivHTML(name);
-
-    return `
-        <div class="ingridiensListChoise">
-            <div class="ingridiensListHeadline">${name}</div>
-            <div class="ingridiensChoises">
-                <select name="${name}" id="${name}Select" class="choiseSelect" onchange="showSelection('${name}Selection', '${name}Select')">
-                    <option value="0">--Bitte wählen Sie ${name}--</option>
-                    ${selectOptionsHTML}
-                </select>
-                ${selectionDivHTML}
-            </div>
-        </div>
-    `;
-}
-
-function generateSelectOptionsHTML(choisesArr) {
-    let optionsHTML = "";
-
-    for (const element of choisesArr) {
-        optionsHTML += `<option value="${element['price']}">${element['choise']} ( + ${element['price']} € )</option>`;
-    }
-
-    return optionsHTML;
-}
-
-function generateSelectionDivHTML(name) {
-    return `
-        <div id="${name}Selection" class="d-none selection">
-            <div class="disFlex">
-                <div id="${name}SelectionName" class="selectionName">Name</div>
-                <div class="smallIcon" onclick="openDialog(event, 'allergens', 1)">
-                    <img src="./img/icons/info-24.png">
-                </div>
-            </div>
-        </div>
-    `;
-}
-
 function showSelection(selectionID, selectID) {
     let section = document.getElementById(selectID);
     let selectionText = section.options[section.selectedIndex].text;
@@ -247,40 +148,6 @@ function deleteIngridiensFromBasket(ingridiensID, isTempBasket=true) {
     calcBasketPrice(true);
 }
 
-/**
-function addIngridient(name, price, ingridiend_ID) {
-    console.log(tempBasket['ingredient'])
-    if(tempBasket[0]['ingredient'] == undefined){
-        tempBasket[0]['ingredient'] = [].concat(
-            {
-                id : ingridiend_ID,
-                name  : name,
-                price : price
-            }
-        );
-       
-    }else {
-        if(!tempBasket[0]['ingredient'].some(item => item.id === ingridiend_ID)){
-            tempBasket[0]['ingredient'].push({
-                id : ingridiend_ID,
-                name  : name,
-                price : price
-            });
-        }else{
-            tempBasket[0]['ingredient'][tempBasket[0]['ingredient'].findIndex(item => item.id === ingridiend_ID)] =
-            {
-                id : ingridiend_ID,
-                name  : name,
-                price : price
-            }
-        }
-    }
-    console.log(tempBasket)
-    calcBasketPrice(true);
-}
-
-*/
-
 function addIngridient(name, price, ingridiend_ID) {
     console.log(tempBasket['ingredient']);
 
@@ -305,43 +172,6 @@ function addIngridient(name, price, ingridiend_ID) {
     console.log(tempBasket);
     calcBasketPrice(true);
 }
-
-/**
-function addtempBasket(name, price, count=1, isTempBasket=true) {
-
-    if(tempBasket.length == 0){
-        console.log("basketIsEmpty");
-        tempBasket = 
-        [{
-            name: name,
-            price : price,
-            count : count,
-            ingredient : []
-        }];
-        console.log("a new Item was added");
-    }else {
-        console.log("change the give Attributes for NAME, price, ");
-        tempBasket[0]['name'] = name;
-        tempBasket[0]['price'] = price;
-        tempBasket[0]['count'] = count;
-    }
-
-    cntPlus = count+1;
-    cntMinus = count-1;
-    if(cntMinus <= 0){
-        cntMinus = 1
-    }
-
-    document.getElementById("modalArtPlus").setAttribute("onclick", `addtempBasket("${name}", "${price}", ${cntPlus})`);
-    document.getElementById("modalArtMinus").setAttribute("onclick", `addtempBasket("${name}", "${price}", ${cntMinus})`);
-    document.getElementById("tempArtCnt").innerHTML = count;
-    calcBasketPrice();
-
-    if(!isTempBasket) {
-        transferTempBasketToBasket();
-    }
-}
- */
 
 function addtempBasket(name, price, count = 1, isTempBasket = true) {
     if (tempBasket.length === 0) {
