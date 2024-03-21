@@ -167,84 +167,7 @@ function renderEmptyBasket() {
     localStorage.removeItem('basket');
 
 }
-/**
- * 
- * @returns 
 
-function renderBasketcontent() {
-    let ret = "";
-    if(basket.length == 0 || basket == undefined) {
-        renderEmptyBasket();
-        return;
-    }
-    //console.log("renderBasket length: " + basket.length);
-    console.log("renderBasket");
-    console.log(basket)
-
-    for (let i = 0; i < basket.length; i++) {
-        const ele = basket[i][0];
-        //console.log(ele);
-        const price = calcArtPrice(ele);
-        ret += `
-            <div class="basketArtWrapper">
-                <div class="basketArtContent">
-                    <div class="basketArtCnt">${ele['count']}</div>
-                    <div class="basketArtRight">
-                        <div class="articleHeadline">
-                            <div class="basketArtPrice">${ele['name']}</div>
-                            <div id='artPrice_${i}'>${getPriceStr(price)}</div>
-                        </div>
-                        ` 
-        if(getIngidientsStr(ele).length > 0){
-            ret += `
-                        <div class="variantText">
-                        ${getIngidientsStr(ele)}
-                        </div>
-            `;
-        }
-        ret +=                 
-                        `
-                        <div class="basketArtFooter">
-                            <div id=comment_${i} onclick="addCommentToBasketArt(${i})" class="addComment">
-                                Anmerkung hinzufügen
-                            </div>
-                            <div class="dflexevenly noRightMargin">
-                                <div class="roundedImg" id="modalArtMinus" onclick="reduceArtCount(${i})"> - </div>
-                                <div id="ArtCnt">${ele['count']}</div>
-                                <div class="roundedImg marginSide" id="modalArtPlus" onclick="addArtCount(${i})"> + </div>
-                            </div>
-                        </div>
-                        <div id="artCommentSection_${i}" class="d-none artCommentSection">
-                        </div>
-                    </div>
-                </div>
-                <hr>
-            </div>
-            `;
-    }
-    ret +=
-    `
-            <div class="basketFooter">
-                <div class="dflexbetween">
-                    <div>Zwischensumme</div>
-                    <div id="basketSubtotal">19,25</div>
-                </div>
-                <div class="dflexbetween highlightedFont">
-                    <div>Gesamtsumme</div>
-                    <div id="basketTotal">19,25</div>
-                </div>
-            </div>
-            <div class="priceBtn basketBtn" onclick="">
-                Bezahlen (<span id="basketBtnPrice"></span>)
-            </div>
-    `;
-    document.getElementById('basketContent').classList.add('basketContentWrapper')
-    document.getElementById('basketContent').innerHTML = ret;
-
-    renderArtComment();
-    calcBasketPrice(false);
-}
- */
 function renderBasketContent() {
     if (!basket || basket.length === 0) {
         renderEmptyBasket();
@@ -312,9 +235,28 @@ function generateArticleHTML(article, price, index) {
     return html;
 }
 
+function generateHTMLBasketFooter() {
+    return `
+        <div class="basketFooter">
+        <div class="dflexbetween">
+            <div>Zwischensumme</div>
+            <div id="basketSubtotal">19,25</div>
+        </div>
+        <div class="dflexbetween highlightedFont">
+            <div>Gesamtsumme</div>
+            <div id="basketTotal">19,25</div>
+        </div>
+        </div>
+        <div class="priceBtn basketBtn" onclick="">
+            Bezahlen (<span id="basketBtnPrice"></span>)
+        </div>
+    `;
+}
+
 function displayBasketContent(content) {
     const basketContent = document.getElementById('basketContent');
     basketContent.classList.add('basketContentWrapper');
+    content += generateHTMLBasketFooter();
     basketContent.innerHTML = content;
 }
 
@@ -448,7 +390,6 @@ function deleteArtComment(indexOfArt) {
 
 function saveBaskettoLocalStorage(){
     localStorage.setItem('basket', JSON.stringify(basket));
-    console.log("we save the Basket local");
 }
 
 function loadBasketFromLocalStorage() {

@@ -39,6 +39,7 @@ function renderIngridensModal(article) {
     
     //vorhandene Elemente ausblenden
     document.getElementById('dialogNav').classList.add('d-none');
+    document.getElementById('orderSucess').classList.add('d-none');
     document.getElementById('rating').classList.add('d-none');
     document.getElementById('info').classList.add('d-none');
     document.getElementById('offer').classList.add('d-none');
@@ -166,10 +167,11 @@ function createRatinghtml(finalrating) {
 }
 
 function openTab(event, activTab) {
-    event.stopPropagation();
+    event.stopPropagation(event);
     document.getElementById('allergenAndSubstanceInfo').classList.add('d-none');
     document.getElementById('dialogNav').classList.remove('d-none');
     document.getElementById('ingridiensChoises').classList.add('d-none');
+    document.getElementById('orderSucess').classList.add('d-none');
     switch (activTab) {
         case 'rating' :
             document.getElementById('rating').classList.remove('d-none');
@@ -235,7 +237,6 @@ function scrollLeftSide() {
 function scrollRightSide() {
     document.getElementById('groupLine').scrollBy(50, 0);
 }
-
 
 function getGroupById(group_id) {
     for (let index = 0; index < groups.length; index++) {
@@ -309,82 +310,6 @@ function addGroupsToResult(element, result, counter) {
 function updateCounter(counter, groupLength) {
     return counter + groupLength;
 }
-/**
-function renderArticleGroups(searchword = "") {
-    let sortedArticleGroups = [];
-    let articleGroups = [];
-    let ret = "";
-    let groupHtmlStr = "";
-
-    if(searchword.length == 0) {
-        articleGroups = groups;
-    }else {
-        searchword = document.getElementById('search').value;
-        articleGroups = getArticleSearchGroups();
-        console.log("Sw: " + searchword);
-        //console.log(getArticleSearchGroups())
-    }
-    //console.log(typeof(articleGroups))
-
-
-    for (let index = 0; index < articleGroups.length; index++) {
-        //console.log(articleGroups[index]['name']);
-        groupHtmlStr = `<div class="articleGroup" id="group_${articleGroups[index]['name']}">`;
-        if(articleGroups[index]['img'].length > 1){
-            groupHtmlStr += `<img class="articleGroupIMG" src="${articleGroups[index]['img']}" />`;
-        }
-        groupHtmlStr +=
-            `<h2>${articleGroups[index]['name']}</h2>
-            <div class="articleVariant">${articleGroups[index]['desc']}</div>
-            `;
-        groupHtmlStr += renderArticleListByGroupID(articleGroups[index]['group-id'],searchword) 
-        groupHtmlStr += 
-        `
-        </div>
-        `; 
-        
-        sortedArticleGroups[groups[index]['sort-id']] = groupHtmlStr;
-        //console.log(groupHtmlStr);
-     
-    }
-    //console.log(sortedArticleGroups);
-    for (let i = 0; i < sortedArticleGroups.length; i++) {
-        if(sortedArticleGroups[i] != undefined) {
-            ret +=  sortedArticleGroups[i];
-        }
-        
-    }
-
-    //add Impressum
-    ret += `
-    <div class="infoWrapper marginImpressum" id="impressum">
-        <div class="infoHeadline">
-            <div class="infoHeadImg">
-                <img src="./img/clock-3-24.png">
-            </div>
-            <div>
-                <h3>Impressum</h3>
-            </div>
-        </div>
-        <div class="impressum-Footer">
-            John Doe handelt im Namen von Bring me 'A' Pizza Berlin<br>
-            Musterstraße 23<br>
-            12345 Buxtehude<br><br>
-            
-            Fax: 0000 0000 000 <br>
-            MwSt-Nummer: DE000 000 000<br>
-            
-            Plattform der EU-Kommission zur Online-Streitbeilegung: https://ec.europa.eu/consumers/odr
-            <hr>
-            Wir sind ein professioneller Anbieter. Erfahre mehr darüber, wie wir gemeinsam mit Lieferhanto.de die Verbraucherverantwortung übernehmen.
-        </div>
-    </div>
-    `;
-    
-    document.getElementById('articleListWrap').innerHTML = ret;
-}
-*/
-
 
 function getArticle(articleID) {
     if(articleID == 0) {

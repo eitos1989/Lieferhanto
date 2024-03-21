@@ -16,6 +16,8 @@ function renderSelectVariantHTML(choisesArr, name) {
     `;
 }
 
+render
+
 function generateSelectOptionsHTML(choisesArr) {
     let optionsHTML = "";
 
@@ -66,7 +68,7 @@ function renderAllergeneModal(articleID) {
 }
 
 function hideElements() {
-    let elementsToHide = ['dialogNav', 'rating', 'info', 'offer', 'ingridiensChoises', 'substanceList', 'allergensList'];
+    let elementsToHide = ['dialogNav', 'rating', 'info', 'offer', 'ingridiensChoises', 'substanceList', 'allergensList', 'orderSucess'];
     for (let elementId of elementsToHide) {
         document.getElementById(elementId).classList.add('d-none');
     }
