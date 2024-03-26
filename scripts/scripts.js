@@ -27,9 +27,11 @@ function openDialog(event, dialogType, articleID=0) {
             break;
 
         case 'success' :
-
+            renderSuccessModal();
+            break;
         default:
-        break;
+            console.log("default");
+            break;
     }
     document.getElementById("dialog").classList.remove("d-none");
 }
@@ -46,7 +48,6 @@ function renderIngridensModal(article) {
     document.getElementById('allergenAndSubstanceInfo').classList.add('d-none');
     document.getElementById('ingridiensChoises').classList.remove('d-none');
     
-    //console.log(article['name']);
     renderVariantsHTML(loadVariantsArrbyArticleID(article['id']));
 
     document.getElementById('articleDesc').innerHTML = article['extra Info'];

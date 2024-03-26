@@ -19,7 +19,8 @@
     <link rel="stylesheet" href="./style.css">  
     <title>Lieferhanto</title>
 </head>
-<body onload="render()">
+<body onload="render()" onscroll="showStickyBasketBtn()">
+    
     <div id="dialog" class="dialog-bg d-none">
         <div class="dialog" onclick="stopClosing(event)">
             <div class="headline">
@@ -33,7 +34,7 @@
                 </div>
             </div>
             <div id="orderSucess">
-                <div>Vielen Dank für deine Bestellung in Höhe von <span id="basketTotalFinish">1,99 €</span> !</div>
+                <div>Vielen Dank für deine Bestellung !</div>
             </div>
             <div id="ingridiensChoises">
                 <div class="ingridiensChoisesHead">
@@ -278,6 +279,9 @@
             
         </header>
         <div class="main">
+            <a class="sticky-button priceBtn" id="stickyBasketBtn" href="#basket" onclick="hideStickyBasketButton()">
+                Warenkorb anzeigen ( <span id="stickyWareBunchBtn">0,00 €</span> )
+            </a>
             <div class="left">
                 <div class="gastroheader">
                     <div id="gastroImg">
@@ -355,7 +359,7 @@
                     
                 </div>
             </div>
-            <div class="basket">
+            <div class="basket" id="basket">
                 <h2>Warenkorb</h2>
                 <div class="basketToggle">
                     <div id="deliveryToggle" class="basketToggleEle elactiv" onClick="setactive('deliveryToggle')">

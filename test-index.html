@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- import Javascript -->
+    <script src="./scripts/scripts.js"></script>
+    <script src="./scripts/variables.js"></script>
+    <script src="./scripts/article.js"></script>
+    <script src="./scripts/groups.js"></script>
+    <script src="./scripts/ratings.js"></script>
+    <script src="./scripts/variantes.js"></script>
+    <script src="./scripts/basket.js"></script>
+    <script src="./scripts/helper.js"></script>
+    <script src="./scripts/render.js"></script>
+    <!-- import Style Dateien -->
+    <link rel="stylesheet" href="./style.css">  
+    <title>Lieferhanto</title>
+</head>
+<body onload="render()">
+    <div class="page">
+        <header>
+            <h2>Header</h2>
+        </header>
+        <div class="main">
+            <div class="left">
+                <h2>Test content</h2>
+            </div>
+            <div class="basket">
+                <h2>Warenkorb</h2>
+                <div class="basketToggle">
+                    <div id="deliveryToggle" class="basketToggleEle elactiv" onClick="setactive('deliveryToggle')">
+                        <img src="./img/bicycle-24.png" />
+                        <div>Lieferung</div>
+                    </div>
+                    <div id="pickupToggle" class="basketToggleEle" onClick="setactive('pickupToggle')">
+                        <img src="./img/cart-29-24.png" />
+                        <div>Abholung</div>
+                    </div>
+                </div>
+                <div id="basketContent">
+                    <img src="./img/bunch-ingredients-48.png" />
+                    <div id="basketInput">
+                        <h3>Fülle deine Warenkorb</h3>
+                        <p>Füge einige leckere Gerichte aus der Speisekarte hinzu unf bestelle dein Essen</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="linkFooterLine">
+            <div class="Footerlink" onclick="openDialog(event, 'info')">Informationen</div>
+            <div class="Footerlink" onclick="openDialog(event, 'rating')">Bewertungen</div>
+            <div class="Footerlink" onclick="openDialog(event, 'offer')">Angebote</div>
+        </div>
+        <div>&copy; 2024 Erik Thomsen</div>
+    </footer>
+</body>
+</html>

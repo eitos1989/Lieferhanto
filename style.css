@@ -155,12 +155,25 @@ footer{
 END Impressum / Footer
 **/
 
+.sticky-button {
+    position: fixed;
+    bottom: 20px;
+    z-index: 1000; /* Damit der Button über anderen Inhalten liegt */
+    cursor: pointer;
+    display: none;
+    width: 80% !important;
+}
+
 /**
 Start Media Queries
 **/
 
 @media only screen and (max-width: 1300px) {
     .main {
+        display: block;
+    }
+
+    .sticky-button {
         display: block;
     }
 

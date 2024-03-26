@@ -45,7 +45,7 @@ Modal CSS ANFANG
     border-bottom: 4px solid orange;
 }
 .d-none {
-    display: none;
+    display: none !important;
 }
 
 .headline {
@@ -407,3 +407,12 @@ textarea {
 .choiseName > div {
     margin-right: 8px;
 }
+
+#orderSucess {
+    display: flex;
+    padding: 0px 24px 24px;
+    font-size: 1.5em;
+    font-weight: bold;
+
+}
+

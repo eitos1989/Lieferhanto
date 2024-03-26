@@ -16,8 +16,6 @@ function renderSelectVariantHTML(choisesArr, name) {
     `;
 }
 
-render
-
 function generateSelectOptionsHTML(choisesArr) {
     let optionsHTML = "";
 
@@ -51,13 +49,28 @@ function setactive(idText) {
     }
 }
 
+function renderSuccessModal() {
+    console.log('Bestellung bestätigt. DANKE für ihren Einkauf');
+    hideElements(['dialogNav', 'rating', 'info', 'offer', 'ingridiensChoises', 'substanceList', 'allergensList', 'allergenAndSubstanceInfo']);
+    document.getElementById('orderSucess').classList.remove('d-none');
+    document.getElementById('modalHeadline').innerHTML = "Bestell Bestätigung";
+}
+
+function orderSucess() {
+    renderSuccessModal();
+
+    tempBasket = [];
+    basket = [];
+
+    saveBaskettoLocalStorage();
+
+    renderBasketContent();
+}
+
 function renderAllergeneModal(articleID) {
-    hideElements();
+    hideElements(['dialogNav', 'rating', 'info', 'offer', 'ingridiensChoises', 'substanceList', 'allergensList', 'orderSucess']);
 
     let articleObj = getArticle(articleID);
-    console.log("ID: " + articleID);
-    console.log(articleObj);
-
     let substanceUL = generateListHTML(articleObj['substance']);
     let allergensUL = generateListHTML(articleObj['allergene']);
 
@@ -67,9 +80,8 @@ function renderAllergeneModal(articleID) {
     document.getElementById('allergenAndSubstanceInfo').classList.remove("d-none");
 }
 
-function hideElements() {
-    let elementsToHide = ['dialogNav', 'rating', 'info', 'offer', 'ingridiensChoises', 'substanceList', 'allergensList', 'orderSucess'];
-    for (let elementId of elementsToHide) {
+function hideElements(elementsToHideArr) {
+    for (let elementId of elementsToHideArr) {
         document.getElementById(elementId).classList.add('d-none');
     }
 }

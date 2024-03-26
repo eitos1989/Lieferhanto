@@ -115,8 +115,36 @@ function calcBasketPrice(isTempBasket = true) {
         document.getElementById('basketTotal').innerHTML = getPriceStr(basketPrice);
         document.getElementById('basketSubtotal').innerHTML = getPriceStr(basketPrice);
         document.getElementById('basketBtnPrice').innerHTML = getPriceStr(basketPrice);
+        document.getElementById('stickyWareBunchBtn').innerHTML = getPriceStr(basketPrice);
     }
     
+}
+
+function isElementInViewport(el) {
+    let rect = el.getBoundingClientRect(); // Holt die Größe und Position des Elements
+    
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
+function showStickyBasketBtn() {
+    if(window.innerWidth < 1300 && !isElementInViewport(document.getElementById('basketBtn'))) {
+        hideStickyBasketButton();
+    }else if(isElementInViewport(document.getElementById('basketBtn'))) {
+        showStickyButton();
+    }
+}
+
+function hideStickyBasketButton() {
+    document.getElementById('stickyBasketBtn').classList.add("d-none"); 
+}
+
+function showStickyButton(){
+    document.getElementById('stickyBasketBtn').classList.remove("d-none"); 
 }
 
 function calcArtPrice(basketItem) {
@@ -247,7 +275,7 @@ function generateHTMLBasketFooter() {
             <div id="basketTotal">19,25</div>
         </div>
         </div>
-        <div class="priceBtn basketBtn" onclick="">
+        <div class="priceBtn basketBtn" id="basketBtn" onclick="openDialog(event, 'success')">
             Bezahlen (<span id="basketBtnPrice"></span>)
         </div>
     `;
@@ -347,7 +375,7 @@ function renderArtComment() {
     
     for (let indexOfArt = 0; indexOfArt < basket.length; indexOfArt++) {
         if(basket[indexOfArt][0]['comment'] == undefined){
-            console.log('found no Comment');
+            //console.log('found no Comment');
             document.getElementById('artCommentSection_'+ indexOfArt).classList.add('artCommentSection');
             document.getElementById('artCommentSection_'+ indexOfArt).classList.remove('artCommentSectionWithValue');
             document.getElementById('artCommentSection_'+ indexOfArt).classList.add('d-none');
