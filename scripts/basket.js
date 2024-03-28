@@ -133,9 +133,9 @@ function isElementInViewport(el) {
 
 function showStickyBasketBtn() {
     if(window.innerWidth < 1300 && !isElementInViewport(document.getElementById('basketBtn'))) {
-        hideStickyBasketButton();
-    }else if(isElementInViewport(document.getElementById('basketBtn'))) {
         showStickyButton();
+    }else if(isElementInViewport(document.getElementById('basketBtn'))) {
+        hideStickyBasketButton();
     }
 }
 
