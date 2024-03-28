@@ -26,7 +26,7 @@ function deleteIngridiensFromBasket(ingridiensID, isTempBasket=true) {
 }
 
 function addIngridient(name, price, ingridiend_ID) {
-    console.log(tempBasket['ingredient']);
+    //console.log(tempBasket['ingredient']);
 
     const newIngredient = {
         id: ingridiend_ID,
@@ -46,13 +46,12 @@ function addIngridient(name, price, ingridiend_ID) {
         }
     }
 
-    console.log(tempBasket);
     calcBasketPrice(true);
 }
 
 function addtempBasket(name, price, count = 1, isTempBasket = true) {
     if (tempBasket.length === 0) {
-        console.log("basketIsEmpty");
+        //console.log("basketIsEmpty");
         tempBasket = [{
             name: name,
             price: price,
@@ -61,7 +60,7 @@ function addtempBasket(name, price, count = 1, isTempBasket = true) {
         }];
         console.log("a new Item was added");
     } else {
-        console.log("change the given attributes for NAME, price");
+        //console.log("change the given attributes for NAME, price");
         tempBasket[0]['name'] = name;
         tempBasket[0]['price'] = price;
         tempBasket[0]['count'] = count;
@@ -196,6 +195,13 @@ function renderEmptyBasket() {
 
 }
 
+function orderSuccess(event) {
+    basket = [];
+    localStorage.removeItem("basket");
+    renderEmptyBasket();
+    openDialog(event, 'success');
+}
+
 function renderBasketContent() {
     if (!basket || basket.length === 0) {
         renderEmptyBasket();
@@ -275,7 +281,7 @@ function generateHTMLBasketFooter() {
             <div id="basketTotal">19,25</div>
         </div>
         </div>
-        <div class="priceBtn basketBtn" id="basketBtn" onclick="openDialog(event, 'success')">
+        <div class="priceBtn basketBtn" id="basketBtn" onclick="orderSuccess(event)">
             Bezahlen (<span id="basketBtnPrice"></span>)
         </div>
     `;
