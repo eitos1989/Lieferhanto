@@ -8,6 +8,8 @@ function stopClosing(event){
 
 function closeDialog() {
     document.getElementById("dialog").classList.add("d-none");  
+    isDialogOpen = false;
+    showStickyBasketBtn();
 }
 
 function calcRatingCnt(){

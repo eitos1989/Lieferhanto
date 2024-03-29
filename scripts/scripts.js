@@ -1,5 +1,9 @@
+let isDialogOpen = false;
+
 function openDialog(event, dialogType, articleID=0) {
-    
+    hideStickyBasketButton();
+    isDialogOpen = true;
+    console.log(isDialogOpen);
     switch (dialogType) {
         case 'rating' :
             document.getElementById('modalHeadline').innerHTML = "Über dieses Geschäft";

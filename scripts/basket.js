@@ -120,6 +120,9 @@ function calcBasketPrice(isTempBasket = true) {
 }
 
 function isElementInViewport(el) {
+    if(el == null) {
+        return false;
+    }
     let rect = el.getBoundingClientRect(); // Holt die Größe und Position des Elements
     
     return (
@@ -133,7 +136,7 @@ function isElementInViewport(el) {
 function showStickyBasketBtn() {
     if(window.innerWidth < 1300 && !isElementInViewport(document.getElementById('basketBtn'))) {
         showStickyButton();
-    }else if(isElementInViewport(document.getElementById('basketBtn'))) {
+    }else if(isElementInViewport(document.getElementById('basketBtn')) || isDialogOpen) {
         hideStickyBasketButton();
     }
 }
