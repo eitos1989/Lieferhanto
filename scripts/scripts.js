@@ -252,33 +252,6 @@ function getGroupById(group_id) {
     }
 }
 
-/**
-
-function getArticleSearchGroups() {
-    searchword = document.getElementById('search').value;
-    searchword = searchword.toLowerCase();
-    let ret = [];
-    counter = 0;
-    for (let index = 0; index < article.length; index++) {
-        const element = article[index];
-        if(element.name.toLowerCase().includes(searchword) || element["extra Info"].toLowerCase().includes(searchword)) {
-            if(element.groups.length > 1){
-                for (let i = 0; i < element.groups.length; i++) {
-                    const group = element.groups[i];
-                    ret[counter] = getGroupById(group);
-                    counter++;
-                }
-            }else {
-                ret[counter] = getGroupById(element.groups[0]);
-                counter++;
-            }
-        }
-    }
-    let retSet = new Set(ret);
-
-    return Array.from(retSet);
-}
-*/
 function getArticleSearchGroups() {
     const searchword = document.getElementById('search').value.toLowerCase();
     console.log("searchword: " + searchword);

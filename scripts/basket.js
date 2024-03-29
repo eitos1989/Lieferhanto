@@ -134,10 +134,11 @@ function isElementInViewport(el) {
 }
 
 function showStickyBasketBtn() {
-    if(window.innerWidth < 1300 && !isElementInViewport(document.getElementById('basketBtn'))) {
-        showStickyButton();
-    }else if(isElementInViewport(document.getElementById('basketBtn')) || isDialogOpen) {
+
+    if(isDialogOpen || isElementInViewport(document.getElementById('basketBtn')) || basket.length == 0) {
         hideStickyBasketButton();
+    }else if(window.innerWidth < 1300 && !isElementInViewport(document.getElementById('basketBtn'))) {
+        showStickyButton();
     }
 }
 
@@ -203,6 +204,7 @@ function orderSuccess(event) {
     localStorage.removeItem("basket");
     renderEmptyBasket();
     openDialog(event, 'success');
+    document.getElementById(stickyWareBunchBtn)
 }
 
 function renderBasketContent() {

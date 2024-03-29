@@ -186,7 +186,12 @@ Start Media Queries
 
 @media only screen and (max-width: 960px) {
     .basket {
-        width: auto
+        width: auto;
+    }
+
+    .maxWidth {
+        margin: auto;
+        width: 90%;
     }
 }
 
@@ -194,6 +199,14 @@ Start Media Queries
     .linkFooterLine {
         display: flex;
         flex-direction: column;
+    }
+
+    #offerList {
+        flex-direction: column;
+    }
+
+    .offer {
+        margin-bottom: 16px;
     }
 
     .dialog {
@@ -207,9 +220,7 @@ Start Media Queries
         flex-direction: column;
     }
 
-    .maxWidth {
-        margin: 0px;
-    }
+
 }
 
 /**
